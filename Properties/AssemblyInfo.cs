@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("OpenTextSummarizer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Burrows Technology Corp")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("OpenTextSummarizer")]
-[assembly: AssemblyCopyright("Copyright © Burrows Technology Corp 2008")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
