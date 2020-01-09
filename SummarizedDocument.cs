@@ -13,5 +13,7 @@ namespace OpenTextSummarizer
             Sentences = new List<string>();
             Concepts = new List<string>();
         }
+
+        public static SummarizedDocument Empty => new SummarizedDocument();
     }
 }

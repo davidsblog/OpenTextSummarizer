@@ -1,4 +1,5 @@
-﻿using OpenTextSummarizer.Interfaces;
+﻿using System;
+using OpenTextSummarizer.Interfaces;
 using System.Collections.Generic;
 
 namespace OpenTextSummarizer
@@ -46,7 +47,9 @@ namespace OpenTextSummarizer
             //rule.Key exists multiple times in the string.
             foreach (KeyValuePair<string, string> rule in suffixRules)
             {
-                if (word.EndsWith(rule.Key))
+                // We must use StringComparison.OrdinalIgnoreCase for EndsWith()
+                // otherwise we could get "ß".EndsWith("ss") == true which is a problem
+                if (word.EndsWith(rule.Key, StringComparison.OrdinalIgnoreCase))
                 {
                     word = word.Substring(0, word.Length - rule.Key.Length) + rule.Value;
                 }
