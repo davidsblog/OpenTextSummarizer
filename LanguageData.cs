@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Xml.Linq;
 
@@ -41,12 +40,10 @@ namespace OpenTextSummarizer
         [FileIOPermission(SecurityAction.Demand, Read = "$AppDir$\\dics")]
         public static LanguageData LoadFromFile(string dictionaryLanguage)
         {
-            string pathFormat = RuntimeInformation.FrameworkDescription.ToUpper().Contains(".NET CORE")
-                ? @"{1}\..\dics\{0}.xml"
-                : @"{1}\dics\{0}.xml";
-
-            string dictionaryFile = string.Format(pathFormat, dictionaryLanguage,
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6));
+            string codebase = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase)?.Substring(6);
+            string dictionaryFile = Directory.Exists($"{codebase}\\..\\dics")
+                ? $"{codebase}\\..\\dics\\{dictionaryLanguage}.xml"
+                : $"{codebase}\\dics\\{dictionaryLanguage}.xml";
 
             if (!File.Exists(dictionaryFile))
             {
